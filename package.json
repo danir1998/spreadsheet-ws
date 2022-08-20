@@ -9,8 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.18.1",
     "pg": "^8.7.3",
-    "ws": "^8.8.1"
+    "ws": "^8.8.1",
+    "x-data-spreadsheet": "^1.1.9"
   },
   "optionalDependencies": {
     "utf-8-validate": "^5.0.9"

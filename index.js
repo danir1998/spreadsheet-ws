@@ -1,6 +1,7 @@
 const WebSocket = require('ws');
 const Pool = require('pg').Pool
-
+const express = require("express");
+const app = express();
 const wsServer = new WebSocket.Server({port: 9000});
 
 const pool = new Pool({
@@ -10,6 +11,17 @@ const pool = new Pool({
     password: '123qweASD',
     port: 5432,
 })
+
+app.use(express.static(__dirname + "/public"));
+app.use('/scripts', express.static(__dirname + '/node_modules/'));
+
+// определяем обработчик для маршрута "/"
+app.get("/", function(request, response){
+    // отправляем ответ
+    response.send("<h2>Привет Express!</h2>");
+});
+// начинаем прослушивать подключения на 3000 порту
+
 
 updateData = (data) => {
     return new Promise((resolve, reject) => {
@@ -66,3 +78,4 @@ let onConnect = (client) => {
 }
 
 wsServer.on('connection', onConnect);
+app.listen(3000);
